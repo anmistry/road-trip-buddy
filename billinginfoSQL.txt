@@ -1,0 +1,15 @@
+SET FOREIGN_KEY_CHECKS=0;
+
+DROP TABLE IF EXISTS `billing_info`;
+CREATE Table `billing_info`(
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `first_name` varchar(255) NOT NULL,
+ `last_name` varchar(255) NOT NULL,
+ `phone_number` int NOT NULL,
+ `credit_card_name`varchar(255) NOT NULL,
+ `credir_card_number` BIGINT NOT NULL,
+ `csc_number` int NOT NULL,
+ `exp_date` DATE NOT NULL,
+ PRIMARY KEY(`id`),
+ UNIQUE KEY(`first_name`,`last_name`)
+)ENGINE=InnoDB;
