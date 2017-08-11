@@ -1,5 +1,7 @@
 var map;
 var corvallis = {lat: 44.57, lng: -123.28};
+//var path = "http://flip3.engr.oregonstate.edu:9501/"
+var path = "http://flip3.engr.oregonstate.edu:9477/"
 
 /**
  * The CenterControl adds a control to the map that recenters the map on
@@ -23,14 +25,14 @@ function CenterControl(controlDiv, map) {
 
   //add first option
   var a = document.createElement('a');
-  a.setAttribute("href", "#");
+  a.setAttribute("href", path + "billing_info");
   var b = document.createTextNode("Enter Billing Info");
   a.appendChild(b);
   optionContainer.appendChild(a);
 
   //add second option
   a = document.createElement('a');
-  a.setAttribute("href", "#");
+  a.setAttribute("href", path + "model_and_make");
   b = document.createTextNode("Enter Model and Make");
   a.appendChild(b);
   optionContainer.appendChild(a);
@@ -44,7 +46,7 @@ function CenterControl(controlDiv, map) {
 
   //add fourth option
   a = document.createElement('a');
-  a.setAttribute("href", "http://flip3.engr.oregonstate.edu:9477/preferences");
+  a.setAttribute("href", path + "preferences");
   b = document.createTextNode("Enter My Preferences");
   a.appendChild(b);
   optionContainer.appendChild(a);
