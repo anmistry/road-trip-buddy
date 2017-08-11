@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User Billing Information</title>
+		<link rel="stylesheet" href="css/billing-info.css" type="text/css" >
+		<script  type="text/javascript" src="scripts/billing-info.js"></script>
+	</head>
+	<h2>Road Trip Buddy User Billing Information</h2>
+	<body>
+		<div style="display: none" id="uid">{{this.userID}}</div>
+		<div class="container">
+			<Form>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				
+				<label>First Name:
+					<input class="non-check" type="text" id="first_name">
+				</label>
+				</div>
+				<br/>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				
+				<label>Last Name:
+					<input class="non-check" type="text" id="last_name">
+				</label>
+				</div>
+				<br/>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				
+				<label>Phone Number:
+					<input class="non-check" type="number" id="phone_no">
+				</label>
+				</div>
+				<br/>
+			
+				<div style="width:inherit;height:20px;padding:10px;">
+				<label>Credit Card Name:
+					<input class="non-check" type="text" id="card_name">
+				</label>
+				</div>
+				<br/>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				<label>Credit Card Number:
+					<input class="non-check" type="number" id="card_no">
+				</label>
+				</div>
+				<br/>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				<label>CSC Number:
+					<input class="non-check" type="number" id="csc_no">
+				</label>
+				</div>
+				<br/>
+				
+				<div style="width:inherit;height:20px;padding:10px;">
+				<label>Expiration Date:
+					<select id="exp_mon">
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+						<option value="07">07</option>
+						<option value="08">08</option>
+						<option value="09">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+					<select id="exp_yr">
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+					</select>
+				</label>
+				</div>
+				
+				<div style="width:inherit;height:100px;padding:10px;">
+				
+				<label>Credit card Type:
+				<br>
+				<input type="checkbox" id="card_type" name="Card Type" value="MasterCard"> MasterCard<br>
+				<input type="checkbox" id="card_type" name="Card Type" value="Visa"> Visa<br>
+				<input type="checkbox" id="card_type" name="Card Type" value="American Express"> American Express
+				</label>
+				</div>
+					<button id="submitButton" type="button" value="Submit" onclick="addBillingInfo()">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>
