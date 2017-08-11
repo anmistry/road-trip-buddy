@@ -1,3 +1,6 @@
+//var path = "http://flip3.engr.oregonstate.edu:9501/";
+var path = "http://flip3.engr.oregonstate.edu:9477/";
+
 function userPreferences() {
 	var userId = parseInt(document.getElementById("uid").innerHTML);
 	var hikes = document.getElementById("hikes").checked;  // Set to true or false
@@ -51,7 +54,7 @@ function userPreferences() {
 	}
 
 	var req = new XMLHttpRequest();
-	req.open('POST', 'http://flip3.engr.oregonstate.edu:9477/add_preferences', true); 
+	req.open('POST', path + 'add_preferences', true); 
 	req.setRequestHeader("Content-Type", "application/json");
 
 	formData = JSON.stringify(formData);
@@ -60,7 +63,7 @@ function userPreferences() {
 	req.addEventListener('load', function() {
 		if(req.status == 200) {
 			alert("Your preferences were uploaded successfully!");
-			window.location = "http://flip3.engr.oregonstate.edu:9477/landing"; // Should be the landing(map) page
+			window.location = path + "landing"; // Should be the landing(map) page
 		} else {
 			alert("There was an error uploading your preferences. Please try again later.");
 		}
@@ -70,7 +73,7 @@ function userPreferences() {
 function skipPreferences() {
 	var retVal = confirm("If you skip this process, the app will not be able to give you personalized results. Are you sure you want to skip?");
 	if (retVal == true) {
-		window.location = "http://flip3.engr.oregonstate.edu:9477/landing";
+		window.location = path + "landing";
 	} else {
 		return;
 	}
