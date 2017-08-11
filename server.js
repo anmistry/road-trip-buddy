@@ -13,8 +13,11 @@ var mysql = require('./dbcon.js');
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 9477);
+//app.set('port', 9501);
 
-app.use(session({secret:'supersecret'}));
+app.use(session({secret:'supersecret',
+				resave: true,
+				saveUninitialized: true}));
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -100,6 +103,59 @@ app.get('/preferences', function(req,res,next){
 app.post('/add_preferences', function(req,res,next) {
 	mysql.pool.query("UPDATE users SET hikes=?, tpark=?, museum=?, mall=?, npark=?, sports=?, wpark=?, landmark=?, musicEvent=? WHERE user_id=?",
 	[req.body.NatureHikes, req.body.ThemeParks, req.body.Museum, req.body.ShoppingMalls, req.body.NatureParks, req.body.SportingEvents, req.body.WaterPark, req.body.FamousLandmarks, req.body.MusicEvents, req.body.userID],
+	function(err, result) {
+		if(err) {
+			next(err);
+			return;
+		}
+	});
+	res.send();
+});
+
+/***********BILLING INFO PAGE**********/
+app.get('/billing_info', function(req,res,next){
+	if (req.session.userID){
+		var context = {};
+		context.userID = req.session.userID;
+		res.render('billing-info', context); //if the user has a session, direct to landing
+	}
+	else {
+		res.redirect('/'); //if the user doesn't have a session, redirect to login page
+	}
+});
+
+/***********BILLING INFO PAGE**********/
+app.post('/add_billing', function(req, res, next){
+	mysql.pool.query("INSERT INTO `billing_info` (user_id, first_name, last_name, phone_number, credit_card_name, credit_card_number, csc_number, exp_mon, exp_yr, card_type) VALUES (?,?,?,?,?,?,?,?,?,?)",
+		[req.body.userId, req.body.first_name, req.body.last_name, req.body.phone_no, req.body.card_name, req.body.card_no, req.body.csc_no, req.body.exp_mon, req.body.exp_yr, req.body.card_type],
+		function(err, result){
+			if(err){
+				next(err);
+				return;
+			}
+		});
+
+		res.send();
+});
+
+/***********MAKE AND MODEL**********/
+app.get('/model_and_make', function(req,res,next){
+	if (req.session.userID){
+		var context = {};
+		context.userID = req.session.userID;
+		res.render('model_and_make', context); //if the user has a session, direct to landing
+	}
+	else {
+		res.redirect('/'); //if the user doesn't have a session, redirect to login page
+	}
+});
+
+/***********ADD MAKE AND MODEL****************/
+// We must make a table called preferences in our db with the below bool fields and a userID field.
+app.post('/add_make_model', function(req,res,next) {
+	console.log(req.body);
+	mysql.pool.query("UPDATE users SET make=?, model=? WHERE user_id=?",
+	[req.body.make, req.body.model, req.body.userId],
 	function(err, result) {
 		if(err) {
 			next(err);
