@@ -9,7 +9,7 @@ CREATE Table `billing_info`(
  `last_name` varchar(255) NOT NULL,
  `phone_number` int NOT NULL,
  `credit_card_name`varchar(255) NOT NULL,
- `credit_card_number` int(16) NOT NULL,
+ `credit_card_number` bigint(16) NOT NULL,
  `csc_number` int(3) NOT NULL,
  `exp_mon` int(2) NOT NULL,
  `exp_yr` int(2) NOT NULL,
