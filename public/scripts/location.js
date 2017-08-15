@@ -39,7 +39,7 @@ function CenterControl(controlDiv, map) {
 
   //add third option
   a = document.createElement('a');
-  a.setAttribute("href", "#");
+  a.setAttribute("href", path + "gasstation");
   b = document.createTextNode("Enter Gas Station Preferences");
   a.appendChild(b);
   optionContainer.appendChild(a);
