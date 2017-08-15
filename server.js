@@ -150,12 +150,36 @@ app.get('/model_and_make', function(req,res,next){
 	}
 });
 
+/***********GAS STATION PAGE**********/
+app.get('/gasstation', function(req,res,next){
+	if (req.session.userID){
+		var context = {};
+		context.userID = req.session.userID;
+		res.render('gasstation', context); //if the user has a session, direct to landing
+	}
+	else {
+		res.redirect('/'); //if the user doesn't have a session, redirect to login page
+	}
+});
+
 /***********ADD MAKE AND MODEL****************/
 // We must make a table called preferences in our db with the below bool fields and a userID field.
 app.post('/add_make_model', function(req,res,next) {
-	console.log(req.body);
 	mysql.pool.query("UPDATE users SET make=?, model=? WHERE user_id=?",
 	[req.body.make, req.body.model, req.body.userId],
+	function(err, result) {
+		if(err) {
+			next(err);
+			return;
+		}
+	});
+	res.send();
+});
+
+/************ADD GAS PREFERENCES***********/
+app.post('/add_gasstation', function(req,res,next) { // Need to set up the DB with the following fields first
+	mysql.pool.query("UPDATE users SET chevron=?, circlek=?, citgo=?, costco=?, cumberland=?, exxon=?, frontier=?, kum=?, mobil=?, race=?, shell=?, sams=?, speedway=?, sunoco=?, wawa=?, seven=?, methanol=?, gasoline=?, diesel=?, hydrogen=?, charge=?, biodiesel=? WHERE user_id=?",
+		[req.body.BP, req.body.Chevron, req.body.Citgo, req.body.Costco, req.body.Cumberland, req.body.Exxon, req.body.Frontier, req.body.Kum, req.body.Mobil, req.body.Race, req.body.Shell, req.body.Sams, req.body.Speedway, req.body.Sunoco, req.body.Wawa, req.body.Seven, req.body.Methanol, req.body.Gasoline, req.body.Diesel, req.body.Hydrogen, req.body.Charge, req.body.Biodiesel, req.body.userId],
 	function(err, result) {
 		if(err) {
 			next(err);
